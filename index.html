@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Điệp & Chi 💕</title>
+<style>
+:root{--pink:#ff5c8a;--pink2:#ff8fb1;--gold:#ffd27a;--bg1:#2b0a1f;--bg2:#12051a;--txt:#fff3f8;--mute:#f5b8cc;--card:rgba(255,255,255,.07);--line:rgba(255,143,177,.35)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:radial-gradient(900px 600px at 15% -10%,#ff5c8a44,transparent 60%),radial-gradient(800px 600px at 110% 20%,#ffd27a22,transparent 60%),linear-gradient(160deg,var(--bg1),var(--bg2));background-attachment:fixed;overflow-x:hidden}
+.floaters{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.floaters span{position:absolute;bottom:-40px;font-size:18px;opacity:.5;animation:rise linear forwards}
+@keyframes rise{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+header{position:sticky;top:0;z-index:10;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;padding:12px;background:rgba(18,5,26,.7);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header a{color:var(--mute);text-decoration:none;padding:8px 12px;border-radius:999px;font-size:14px;cursor:pointer}
+header a:hover{color:#fff;background:rgba(255,92,138,.25)}
+main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 18px 80px}
+section{padding:60px 0 10px;text-align:center}
+h1.title{font-family:"Brush Script MT","Segoe Script",cursive;font-size:clamp(48px,11vw,110px);margin:20px 0 6px;background:linear-gradient(90deg,var(--pink2),var(--gold),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite;background-size:300% 100%;line-height:1.1}
+@keyframes shine{to{background-position:300% 0}}
+h2{font-size:28px;margin:0 0 8px;color:var(--gold)}
+.sub{color:var(--mute);margin:0 0 22px;font-size:15px}
+.heart{display:inline-block;font-size:60px;animation:beat 1.2s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.2)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;margin:0 auto;max-width:760px;box-shadow:0 20px 60px -20px #000a}
+.counter{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.counter div{background:rgba(255,92,138,.15);border:1px solid var(--line);border-radius:16px;padding:14px 6px}
+.counter b{display:block;font-size:34px;color:var(--gold)}
+.counter small{color:var(--mute);font-size:13px}
+button,.btn{background:linear-gradient(135deg,var(--pink),#ff3d7a);color:#fff;border:0;padding:12px 22px;border-radius:14px;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 10px 25px -10px var(--pink)}
+button:hover{filter:brightness(1.1)}
+button.ghost{background:transparent;border:1px solid var(--line);box-shadow:none}
+input,textarea{width:100%;background:rgba(0,0,0,.25);color:var(--txt);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;font-size:15px}
+textarea{min-height:90px;resize:vertical}
+.envelope{position:relative;width:min(420px,90vw);height:250px;margin:20px auto;cursor:pointer;perspective:900px}
+.env-body{position:absolute;inset:0;background:linear-gradient(135deg,#ffe3ec,#ffc2d4);border-radius:12px;box-shadow:0 20px 40px -10px #000a;overflow:hidden}
+.env-flap{position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(180deg,#ff8fb1,#ff5c8a);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s ease;z-index:3}
+.env-seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:radial-gradient(#ffd27a,#c8902a);z-index:4;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 10px #0006;transition:opacity .4s}
+.envelope.open .env-flap{transform:rotateX(180deg)}
+.envelope.open .env-seal{opacity:0}
+.letter{position:absolute;left:8%;right:8%;top:8%;bottom:8%;background:#fffaf5;color:#4a1d2e;border-radius:6px;padding:18px;text-align:left;font-family:Georgia,serif;font-size:15px;line-height:1.7;transform:translateY(0);transition:transform 1s ease;z-index:2;overflow:auto;box-shadow:inset 0 0 0 1px #f3c8d6}
+.envelope.open .letter{transform:translateY(-70px)}
+.letter h3{margin:0 0 8px;color:#c2185b;font-size:18px}
+.letter p{margin:0 0 10px;white-space:pre-line}
+.quiz-q{font-weight:700;margin:10px 0;text-align:left}
+.quiz-opt{display:block;width:100%;margin:6px 0;background:rgba(255,255,255,.08);border:1px solid var(--line);text-align:left;box-shadow:none}
+.quiz-opt.right{background:#2ee59d33;border-color:#2ee59d}
+.quiz-opt.wrong{background:#ff5c8a33;border-color:var(--pink)}
+.meter{height:26px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden;margin:16px 0 8px;border:1px solid var(--line)}
+.meter div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--gold));transition:width 1.2s ease}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:10px}
+.photo{aspect-ratio:1/1;border-radius:16px;overflow:hidden;cursor:pointer;border:1px solid var(--line);background:linear-gradient(135deg,#ff5c8a55,#ffd27a33);display:flex;align-items:center;justify-content:center;font-size:34px}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.photo:hover img{transform:scale(1.07)}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:95vw;max-height:88vh;border-radius:16px}
+.wall-item{background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:10px 0;text-align:left}
+.wall-item small{color:var(--mute)}
+.ticket{display:inline-block;margin-top:10px;padding:10px 16px;border:2px dashed var(--gold);border-radius:12px;color:var(--gold);font-weight:700}
+footer{text-align:center;color:var(--mute);font-size:14px;padding:40px 0 0}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#2b0a1f;border:1px solid var(--line);padding:10px 16px;border-radius:12px;display:none;z-index:60}
+.burst{position:fixed;pointer-events:none;font-size:22px;z-index:70;animation:burst 1.2s ease-out forwards}
+@keyframes burst{to{transform:translate(var(--dx),var(--dy)) scale(.4);opacity:0}}
+[hidden]{display:none!important}
+@media (max-width:600px){.counter{grid-template-columns:repeat(2,1fr)}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="floaters" id="floaters"></div>
+
+<header>
+  <a href="#home">Trang chủ</a>
+  <a href="#dem">Đếm ngày</a>
+  <a href="#thu">Bức thư</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#do">Đo tình yêu</a>
+  <a href="#anh">Ảnh kỷ niệm</a>
+  <a href="#tuong">Lời nhắn</a>
+  <a href="#hen">Hẹn hò</a>
+</header>
+
+<main>
+  <section id="home">
+    <div class="heart">💖</div>
+    <h1 class="title" id="title"></h1>
+    <p class="sub">Một góc nhỏ dành riêng cho hai người</p>
+    <p style="color:var(--mute)">Nhấn vào bất kỳ đâu để thả tim 💕</p>
+  </section>
+
+  <section id="dem">
+    <h2>Đã bên nhau được</h2>
+    <p class="sub" id="since"></p>
+    <div class="card">
+      <div class="counter">
+        <div><b id="cd-d">0</b><small>Ngày</small></div>
+        <div><b id="cd-h">0</b><small>Giờ</small></div>
+        <div><b id="cd-m">0</b><small>Phút</small></div>
+        <div><b id="cd-s">0</b><small>Giây</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="thu">
+    <h2>Mở bức thư gửi Chi 💌</h2>
+    <p class="sub">Nhấn vào phong thư để mở.</p>
+    <div class="envelope" id="envelope">
+      <div class="env-body">
+        <div class="letter" id="letter-content"></div>
+      </div>
+      <div class="env-flap"></div>
+      <div class="env-seal">💗</div>
+    </div>
+  </section>
+
+  <section id="quiz">
+    <h2>Chi hiểu Điệp bao nhiêu?</h2>
+    <p class="sub">Trả lời đúng hết để nhận phần thưởng.</p>
+    <div class="card" id="quiz-box"></div>
+  </section>
+
+  <section id="do">
+    <h2>Máy đo tình yêu 💞</h2>
+    <p class="sub">Nhập tên hai người rồi xem kết quả.</p>
+    <div class="card">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <input id="ln1" placeholder="Tên người thứ nhất" value="Điệp">
+        <input id="ln2" placeholder="Tên người thứ hai" value="Chi">
+      </div>
+      <button style="margin-top:14px" id="love-btn">Đo ngay</button>
+      <div class="meter"><div id="meter-fill"></div></div>
+      <p id="meter-text" style="font-size:20px;margin:6px 0 0"></p>
+    </div>
+  </section>
+
+  <section id="anh">
+    <h2>Ảnh kỷ niệm 📸</h2>
+    <p class="sub">Nhấn vào ảnh để xem to.</p>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section id="tuong">
+    <h2>Tường lời nhắn 💬</h2>
+    <p class="sub">Viết gì đó cho nhau. Lời nhắn lưu trên trình duyệt này.</p>
+    <div class="card">
+      <textarea id="wall-input" placeholder="Viết lời nhắn..."></textarea>
+      <div style="margin-top:12px;text-align:right"><button id="wall-send">Gửi lời nhắn</button></div>
+      <div id="wall-list"></div>
+    </div>
+  </section>
+
+  <section id="hen">
+    <h2>Vé hẹn hò 🎟</h2>
+    <p class="sub">Bốc ngẫu nhiên một hoạt động cho buổi hẹn tiếp theo.</p>
+    <div class="card">
+      <button id="date-btn">Bốc vé hẹn hò</button>
+      <div><span class="ticket" id="date-ticket"></span></div>
+    </div>
+  </section>
+
+  <footer>© Điệp & Chi · Yêu nhau mãi nhé 💕</footer>
+</main>
+
+<div class="lightbox" id="lightbox"><img id="lightbox-img" alt=""></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===================== CẤU HÌNH – SỬA Ở ĐÂY ===================== */
+const CONFIG = {
+  nameA: "Điệp",
+  nameB: "Chi",
+  // Ngày bắt đầu yêu nhau (năm-tháng-ngày giờ:phút:giây). Sửa lại cho đúng.
+  startDate: "2020-01-01T00:00:00",
+  // Thư
+  letterFrom: "Bố",
+  letterTitle: "Gửi Chi",
+  letterBody: "BỐ YÊU MÀY",
+  // Mật khẩu mở thư. Để trống nếu không cần mật khẩu.
+  letterPassword: "",
+  // Ảnh kỷ niệm: dán link ảnh vào đây (để trống sẽ hiện ô màu)
+  photos: [
+    // "https://link-anh-1.jpg",
+    // "https://link-anh-2.jpg"
+  ],
+  // Câu hỏi quiz: đáp án đúng là chỉ số 0,1,2,3 (theo thứ tự các lựa chọn)
+  quiz: [
+    {q:"Màu yêu thích của Điệp là gì?", opts:["Hồng","Xanh","Vàng","Đen"], a:0},
+    {q:"Món Điệp thích ăn nhất?", opts:["Phở","Bún bò","Lẩu","Cơm tấm"], a:1},
+    {q:"Điệp thích đi chơi ở đâu nhất?", opts:["Biển","Núi","Thành phố","Ở nhà"], a:2}
+  ],
+  // Danh sách hoạt động cho vé hẹn hò
+  dates:["Ăn kem","Xem phim","Đi dạo hồ","Ăn lẩu","Chụp ảnh cùng nhau","Nấu ăn cùng nhau","Đi cà phê","Dã ngoại"]
+};
+/* =============================================================== */
+
+const $ = id => document.getElementById(id);
+const rndPick = arr => arr[Math.floor(Math.random()*arr.length)];
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function toast(t){ const el=$("toast"); el.textContent=t; el.style.display="block"; clearTimeout(el._t); el._t=setTimeout(()=>el.style.display="none",2200); }
+
+$("title").textContent = `${CONFIG.nameA} & ${CONFIG.nameB}`;
+
+const start = new Date(CONFIG.startDate);
+$("since").textContent = "Từ ngày " + start.toLocaleDateString("vi-VN");
+function tickCounter(){
+  const diff = Math.max(0, Date.now() - start.getTime());
+  const s = Math.floor(diff/1000);
+  $("cd-d").textContent = Math.floor(s/86400);
+  $("cd-h").textContent = Math.floor(s%86400/3600);
+  $("cd-m").textContent = Math.floor(s%3600/60);
+  $("cd-s").textContent = s%60;
+}
+tickCounter(); setInterval(tickCounter,1000);
+
+$("letter-content").innerHTML = `<h3>${esc(CONFIG.letterTitle)}</h3><p>${esc(CONFIG.letterBody)}</p><p style="text-align:right;margin-top:14px"><i>— ${esc(CONFIG.letterFrom)}</i></p>`;
+$("envelope").onclick = () => {
+  const env = $("envelope");
+  if(env.classList.contains("open")) return;
+  if(CONFIG.letterPassword){
+    const pw = prompt("Nhập mật khẩu để mở thư:");
+    if(pw === null) return;
+    if(pw !== CONFIG.letterPassword){ toast("Sai mật khẩu rồi 🥺"); return; }
+  }
+  env.classList.add("open");
+  burst(window.innerWidth/2, 300, 12);
+};
+
+let quizIdx = 0, quizScore = 0;
+function renderQuiz(){
+  const box = $("quiz-box");
+  if(quizIdx >= CONFIG.quiz.length){
+    box.innerHTML = `<h3 style="color:var(--gold);margin:0 0 8px">🎉 Điểm của Chi: ${quizScore}/${CONFIG.quiz.length}</h3>
+      <p style="color:var(--mute)">${quizScore===CONFIG.quiz.length?"Chi hiểu Điệp tuyệt đối! 💯":"Chi cần tìm hiểu thêm nhiều hơn nè 😉"}</p>
+      <button id="quiz-again">Chơi lại</button>`;
+    $("quiz-again").onclick = () => { quizIdx=0; quizScore=0; renderQuiz(); };
+    return;
+  }
+  const q = CONFIG.quiz[quizIdx];
+  box.innerHTML = `<p class="quiz-q">Câu ${quizIdx+1}/${CONFIG.quiz.length}: ${esc(q.q)}</p>` +
+    q.opts.map((o,i)=>`<button class="quiz-opt" data-i="${i}">${esc(o)}</button>`).join("");
+  const opts = box.querySelectorAll(".quiz-opt");
+  opts.forEach(b=>b.onclick=()=>{
+    const i = Number(b.dataset.i);
+    if(i === q.a){ quizScore++; b.classList.add("right"); }
+    else { b.classList.add("wrong"); opts[q.a].classList.add("right"); }
+    opts.forEach(x=>x.disabled=true);
+    setTimeout(()=>{ quizIdx++; renderQuiz(); }, 1100);
+  });
+}
+renderQuiz();
+
+const loveMsgs = [
+  [0,30,"Hai bạn cần thêm thời gian để hiểu nhau 😅"],
+  [31,60,"Đang tiến triển tốt rồi nè 🌱"],
+  [61,85,"Yêu nhau nồng nàn lắm 💕"],
+  [86,100,"Hợp nhau như hình với bóng 💞✨"]
+];
+$("love-btn").onclick = () => {
+  const a=$("ln1").value.trim(), b=$("ln2").value.trim();
+  if(!a||!b){ toast("Nhập đủ tên hai người nhé"); return; }
+  const pct = 50 + Math.floor(Math.random()*51);
+  $("meter-fill").style.width = pct+"%";
+  const msg = loveMsgs.find(m=>pct>=m[0]&&pct<=m[1])[2];
+  $("meter-text").textContent = `${a} ❤ ${b}: ${pct}% — ${msg}`;
+  burst(window.innerWidth/2, 500, 10);
+};
+
+const gallery = $("gallery");
+const palette = ["#ff5c8a","#ffd27a","#ff8fb1","#c084fc","#60a5fa","#34d399"];
+if(CONFIG.photos.length){
+  gallery.innerHTML = CONFIG.photos.map((src,i)=>`<div class="photo" data-src="${esc(src)}"><img src="${esc(src)}" alt="Kỷ niệm ${i+1}"></div>`).join("");
+}else{
+  gallery.innerHTML = palette.map(c=>`<div class="photo" style="background:linear-gradient(135deg,${c}88,#ffffff22)">💗</div>`).join("") +
+    `<p style="grid-column:1/-1;color:var(--mute)">Thêm link ảnh vào CONFIG.photos để hiện ảnh thật.</p>`;
+}
+gallery.querySelectorAll("[data-src]").forEach(p=>p.onclick=()=>{
+  $("lightbox-img").src = p.dataset.src;
+  $("lightbox").classList.add("open");
+});
+$("lightbox").onclick = () => $("lightbox").classList.remove("open");
+
+const WALL_KEY="dc_wall_v1";
+function loadWall(){ try{ return JSON.parse(localStorage.getItem(WALL_KEY)||"[]"); }catch(e){ return []; } }
+function renderWall(){
+  const list = loadWall();
+  $("wall-list").innerHTML = list.length
+    ? list.slice().reverse().map(m=>`<div class="wall-item">${esc(m.text)}<br><small>${new Date(m.t).toLocaleString("vi-VN")}</small></div>`).join("")
+    : '<p style="color:var(--mute)">Chưa có lời nhắn nào. Viết cái đầu tiên nhé 💌</p>';
+}
+$("wall-send").onclick = () => {
+  const text = $("wall-input").value.trim();
+  if(!text){ toast("Viết gì đó đã nhé"); return; }
+  const list = loadWall(); list.push({text, t:Date.now()});
+  localStorage.setItem(WALL_KEY, JSON.stringify(list.slice(-100)));
+  $("wall-input").value=""; renderWall(); burst(window.innerWidth/2, window.innerHeight-200, 8);
+};
+renderWall();
+
+$("date-btn").onclick = () => {
+  const t = $("date-ticket");
+  let n = 0;
+  const timer = setInterval(()=>{
+    t.textContent = rndPick(CONFIG.dates);
+    if(++n>12){ clearInterval(timer); t.textContent = "🎟 " + rndPick(CONFIG.dates); }
+  },90);
+};
+
+const EMOJIS=["💖","💕","💗","💞","❤️","✨"];
+function burst(x,y,n=6){
+  for(let i=0;i<n;i++){
+    const el=document.createElement("div");
+    el.className="burst";
+    el.textContent=rndPick(EMOJIS);
+    el.style.left=(x+(Math.random()*60-30))+"px";
+    el.style.top=(y+(Math.random()*30-15))+"px";
+    el.style.setProperty("--dx",(Math.random()*160-80)+"px");
+    el.style.setProperty("--dy",(-Math.random()*160-40)+"px");
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),1300);
+  }
+}
+document.addEventListener("click",e=>{
+  if(e.target.closest("input,textarea,button,a,.photo,.envelope,.lightbox")) return;
+  burst(e.clientX,e.clientY,6);
+});
+
+const fl = $("floaters");
+setInterval(()=>{
+  const s=document.createElement("span");
+  s.textContent=rndPick(["💗","💕","🌸","✨","💖"]);
+  s.style.left=Math.random()*100+"%";
+  s.style.animationDuration=(7+Math.random()*6)+"s";
+  fl.appendChild(s);
+  setTimeout(()=>s.remove(),14000);
+},700);
+</script>
+</body>
+</html>
